@@ -41,7 +41,7 @@ export type Props = {
   acceptCookieButtonText?: string;
   centralize?: boolean;
   size?: "xs" | "sm" | "md" | "full";
-}
+};
 
 function CookieConsent({
   title = "Cookie policy",
@@ -77,11 +77,11 @@ function CookieConsent({
             bg-white 
             flex flex-col gap-4 
             p-4 md:p-6
-            shadow-md md:shadow-lg shadow-black/5 md:shadow-black/10
+            shadow-lg
           `}
         >
           <header class="flex justify-between items-center">
-            <span class="text-[#161616] text-xl">
+            <span class="text-base-content text-xl">
               {title}
             </span>
             <Button
@@ -96,20 +96,25 @@ function CookieConsent({
               "
             >
               <span>
-                <Icon id="XMark" size={28} strokeWidth={2} />
+                <Icon
+                  id="XMark"
+                  size={28}
+                  strokeWidth={2}
+                  class="fill-base-content"
+                />
               </span>
             </Button>
           </header>
-          <p class="text-[#161616] text-base">
+          <p class="text-base-content text-base line-clamp-3">
             {description}
           </p>
           <footer
             class={`
               flex flex-col justify-between gap-4 
-              ${size !== "xs" && size !== "sm" && "md:flex-row"}
+              ${!["xs", "sm"].includes(size) && "md:flex-row"}
             `}
           >
-            <span class="text-[#6D8B61] flex items-center gap-1 text-sm">
+            <span class="text-secondary flex items-center gap-1 text-sm">
               <a href={policyURL} class="underline">
                 {policyLinkDescription}
               </a>
@@ -118,11 +123,13 @@ function CookieConsent({
             <Button
               data-button-cc-accept
               class="
-              bg-[#273746] 
+                bg-primary 
+                text-base
+                text-primary-content
+                font-normal
                 rounded-none 
-                hover:bg-[#273746] hover:brightness-90 
+                hover:bg-primary hover:brightness-90 
                 transition-all
-                text-white
               "
             >
               {acceptCookieButtonText}
